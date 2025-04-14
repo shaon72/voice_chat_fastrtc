@@ -78,7 +78,6 @@ stream = Stream(
 )
 
 app = FastAPI()
-app = gr.mount_gradio_app(app, stream.ui, path="/")
 
 @app.post("/call")
 async def start_call(req: Request):
@@ -96,6 +95,8 @@ async def start_call(req: Request):
   )
 
   print(f"sid={call.sid}")
+
+app = gr.mount_gradio_app(app, stream.ui, path="/")
 
 if __name__ == "__main__":
   import os
